@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_file_import_tree_aux" model="ir.ui.view">
+        <field name="name">File import (records)</field>
+        <field name="model">wibtec_ktv.file_import_aux</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="db_id"/>
+                <field name="konto_id"/>
+                <field name="auftraggeber_konto"/>
+                <field name="auftraggeber_blz"/>
+                <field name="auftraggeber_name"/>
+                <field name="betrag"/>
+                <field name="waehrung"/>
+            </tree>
+        </field>
+    </record>
+    
+
+    <record id="view_file_import_form_aux" model="ir.ui.view">
+        <field name="name">File import (records)</field>
+        <field name="model">wibtec_ktv.file_import_aux</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="db_id"/>
+                        <field name="konto_id"/>
+                        <field name="auftraggeber_konto"/>
+                        <field name="auftraggeber_blz"/>
+                        <field name="auftraggeber_name"/>
+                        <field name="betrag"/>
+                        <field name="waehrung"/>
+                        <field name="zweck"/>
+                        <field name="zweck2"/>
+                        <field name="zweck3"/>
+                        <field name="zusatzinformation"/>
+                        <field name="buchungsdatum"/>
+                        <field name="valuta"/>
+                        <field name="saldo"/>
+                        <field name="primanota"/>
+                        <field name="art"/>
+                        <field name="art_erw"/>
+                    </group>
+                    <group>
+                        <field name="kunden_referenz"/>
+                        <field name="kommentar"/>
+                        <field name="umsatztyp_id"/>
+                        <field name="erfassungsreferenz"/>
+                        <field name="gvcode"/>
+                        <field name="institutsreferent"/>
+                        <field name="ist_storno"/>
+                        <field name="orig_betrag"/>
+                        <field name="orig_waehrung"/>
+                        <field name="partner_name"/>
+                        <field name="partner_konto"/>
+                        <field name="partner_blz"/>
+                        <field name="abrufdatum"/>
+                        <field name="db_eintragsdatum"/>
+                        <field name="db_hash_in_quelle"/>
+                        <field name="db_statusflags"/>
+                        <field name="db_kundenkonto_zuordnung"/>
+                    </group>
+                    <label for="db_quelle"/>
+                    <field name="db_quelle"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+    
+    <record id="view_file_import_filter_aux" model="ir.ui.view">
+        <field name="name">File import (records)</field>
+        <field name="model">wibtec_ktv.file_import_aux</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="db_id"/>
+                <separator/>
+                <filter string="Draft" name="state" domain="[('state', '=', 'draft')]"/>
+                <filter string="Migrated" name="state" domain="[('state', '=', 'migrated')]"/>
+            </search>
+        </field>
+    </record>
+    
+    
+    <record id="action_file_import_aux" model="ir.actions.act_window">
+        <field name="name">File import (records)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wibtec_ktv.file_import_aux</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_file_import_tree_aux"/>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_file_import_filter_aux"/>
+    </record>
+    
+    <menuitem name="KTV aux" 
+                action="action_file_import_aux" 
+                id="menu_action_file_import_aux" 
+                parent="account.menu_finance_receivables_documents" 
+                sequence="101"/>
+    
+</odoo>

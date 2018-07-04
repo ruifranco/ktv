@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ktv_file_import,Wibtec K-TV File Import,model_wibtec_ktv_file_import,,1,1,1,1
+access_ktv_file_import_aux,Wibtec K-TV File Import (aux),model_wibtec_ktv_file_import_aux,,1,1,1,1

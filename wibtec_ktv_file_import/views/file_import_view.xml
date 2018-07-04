@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_file_import_tree" model="ir.ui.view">
+        <field name="name">File import</field>
+        <field name="model">wibtec_ktv.file_import</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree colors="red:status=='nok'">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    
+    
+    <record id="view_file_import_filter" model="ir.ui.view">
+        <field name="name">File import</field>
+        <field name="model">wibtec_ktv.file_import</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="description"/>
+                <separator/>
+                <filter string="OK" name="status_ok" domain="[('status', '=', 'ok')]"/>
+                <filter string="NOK" name="status_nok" domain="[('status', '=', 'nok')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="File" domain="[]" context="{'group_by':'name'}"/>
+                    <filter string="Status" domain="[]" context="{'group_by':'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    
+    <record id="action_file_import" model="ir.actions.act_window">
+        <field name="name">File import</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wibtec_ktv.file_import</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_file_import_tree"/>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_file_import_filter"/>
+    </record>
+    
+    <menuitem name="File import" 
+                action="action_file_import" 
+                id="menu_action_file_import" 
+                parent="account.menu_finance_receivables_documents" 
+                sequence="100"/>
+    
+</odoo>
